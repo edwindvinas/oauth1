@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"appengine"
 	"appengine/urlfetch"
 )
 
@@ -46,7 +47,7 @@ func (c *Config) Client(ctx context.Context, t *Token) *http.Client {
 }
 
 // NewClient returns a new http Client which signs requests via OAuth1.
-func NewClient(ctx context.Context, config *Config, token *Token) *http.Client {
+func NewClient(ctx context.Context, config *Config, token *Token) *urlfetch.Client {
 	transport := &Transport{
 		Base:   contextTransport(ctx),
 		source: StaticTokenSource(token),
