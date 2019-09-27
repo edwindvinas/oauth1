@@ -51,7 +51,7 @@ func NewClient(ctx context.Context, config *Config, token *Token) *http.Client {
 		source: StaticTokenSource(token),
 		auther: newAuther(config),
 	}
-	return &http.Client{Transport: transport}
+	return &urlfetch.Client{Transport: transport}
 }
 
 // RequestToken obtains a Request token and secret (temporary credential) by
